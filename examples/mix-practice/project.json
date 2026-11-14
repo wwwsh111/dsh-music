@@ -1,0 +1,170 @@
+{
+  "schema": 2,
+  "id": "mix-practice",
+  "title": "混音练习：六轨流行小样",
+  "genre": "pop",
+  "modifiers": [],
+  "tempo": 110,
+  "key": {
+    "tonic": "A",
+    "pc": 9,
+    "mode": "minor"
+  },
+  "meter": "4/4",
+  "sampleRate": 48000,
+  "sections": [
+    {
+      "id": "intro1",
+      "role": "intro",
+      "startBar": 1,
+      "bars": 4,
+      "energy": 0.3,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    },
+    {
+      "id": "chorus1",
+      "role": "chorus",
+      "startBar": 5,
+      "bars": 8,
+      "energy": 0.9,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G",
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    },
+    {
+      "id": "outro1",
+      "role": "outro",
+      "startBar": 13,
+      "bars": 4,
+      "energy": 0.35,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "drums",
+      "source": "kit:pop_16",
+      "midi": "midi/drums.mid",
+      "fx": "drum_bus",
+      "gainDb": -2.5,
+      "pan": 0,
+      "send": {
+        "reverb": 0.1,
+        "delay": 0
+      }
+    },
+    {
+      "id": "bass",
+      "source": "bass:pick",
+      "midi": "midi/bass.mid",
+      "fx": "bass",
+      "gainDb": -4,
+      "pan": 0,
+      "send": {
+        "reverb": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "keys",
+      "source": "keys:electric",
+      "midi": "midi/keys.mid",
+      "fx": "keys",
+      "gainDb": -10,
+      "pan": -0.18,
+      "send": {
+        "reverb": 0.16,
+        "delay": 0.04
+      }
+    },
+    {
+      "id": "gtr_rhythm_l",
+      "source": "guitar:clean",
+      "midi": "midi/gtr_rhythm_l.mid",
+      "fx": "amp_rhythm",
+      "gainDb": -13,
+      "pan": -0.55,
+      "send": {
+        "reverb": 0.12,
+        "delay": 0
+      }
+    },
+    {
+      "id": "gtr_rhythm_r",
+      "source": "guitar:clean",
+      "midi": "midi/gtr_rhythm_r.mid",
+      "fx": "amp_rhythm",
+      "gainDb": -13,
+      "pan": 0.55,
+      "send": {
+        "reverb": 0.12,
+        "delay": 0
+      }
+    },
+    {
+      "id": "pad",
+      "source": "strings:pad",
+      "midi": "midi/pad.mid",
+      "fx": "pad",
+      "gainDb": -17,
+      "pan": 0,
+      "send": {
+        "reverb": 0.32,
+        "delay": 0
+      }
+    }
+  ],
+  "vocal": {
+    "enabled": false,
+    "language": "zh",
+    "voice": "feiyu",
+    "style": "cute",
+    "lyrics": "lyrics/lyrics.json",
+    "melody": "midi/vocal.mid",
+    "alignment": "analysis/vocal-align.json",
+    "renders": {}
+  },
+  "mix": {
+    "preset": "pop",
+    "reference": null,
+    "targets": {
+      "lufs": -10,
+      "truePeak": -1.0
+    }
+  },
+  "export": {
+    "daw": "generic",
+    "sampleRate": 48000,
+    "bitDepth": 24
+  },
+  "renders": {
+    "current": null,
+    "mix": null,
+    "master": null
+  },
+  "seed": 1016,
+  "createdAt": "2026-11-08T23:00:00",
+  "genrePack": {
+    "name": "混音练习：六轨流行小样",
+    "lufs": -10,
+    "vocal": null
+  },
+  "description": "16 小节 110 BPM，鼓/贝斯/电钢/左右吉他/Pad 六轨；按 README 的步骤练推子、声像与混响。"
+}

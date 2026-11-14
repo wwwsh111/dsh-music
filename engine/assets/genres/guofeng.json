@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "guofeng",
+  "name": "国风",
+  "aliases": [
+    "guofeng",
+    "中国风",
+    "古风"
+  ],
+  "bpm": [
+    70,
+    100
+  ],
+  "keyFlavors": [
+    "pentatonic",
+    "minor"
+  ],
+  "progressions": [
+    [
+      "I",
+      "vi",
+      "IV",
+      "V"
+    ],
+    [
+      "i",
+      "VI",
+      "III",
+      "VII"
+    ],
+    [
+      "I",
+      "V",
+      "vi",
+      "iii"
+    ]
+  ],
+  "drumPatterns": [
+    "taiko_soft",
+    "guofeng_perc"
+  ],
+  "bassPatterns": [
+    "root_whole",
+    "root_fifth"
+  ],
+  "compPatterns": [
+    "guzheng_arp",
+    "dizi_line"
+  ],
+  "instruments": {
+    "keys": "guzheng:pluck",
+    "lead": "dizi:soft",
+    "pad": "strings:oriental",
+    "bass": "bass:low"
+  },
+  "mixPreset": "guofeng",
+  "vocal": {
+    "range": [
+      "A3",
+      "E5"
+    ],
+    "style": "ethnic",
+    "harmony": "octave"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "interlude",
+    "verse",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -10,
+  "sampleTags": [
+    "guofeng",
+    "guzheng",
+    "oriental"
+  ],
+  "referenceHints": [
+    "五声音阶",
+    "古筝琶音",
+    "弦乐铺底"
+  ],
+  "defaultKey": "Am"
+}

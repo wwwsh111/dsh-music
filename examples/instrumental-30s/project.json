@@ -1,0 +1,142 @@
+{
+  "schema": 2,
+  "id": "instrumental-30s",
+  "title": "纯器乐 30 秒 Demo",
+  "genre": "citypop",
+  "modifiers": [],
+  "tempo": 96,
+  "key": {
+    "tonic": "A",
+    "pc": 9,
+    "mode": "minor"
+  },
+  "meter": "4/4",
+  "sampleRate": 48000,
+  "sections": [
+    {
+      "id": "intro1",
+      "role": "intro",
+      "startBar": 1,
+      "bars": 4,
+      "energy": 0.35,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    },
+    {
+      "id": "verse1",
+      "role": "verse",
+      "startBar": 5,
+      "bars": 4,
+      "energy": 0.6,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    },
+    {
+      "id": "outro1",
+      "role": "outro",
+      "startBar": 9,
+      "bars": 4,
+      "energy": 0.3,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "drums",
+      "source": "kit:pop_16",
+      "midi": "midi/drums.mid",
+      "fx": "drum_bus",
+      "gainDb": -3,
+      "pan": 0,
+      "send": {
+        "reverb": 0.06,
+        "delay": 0
+      }
+    },
+    {
+      "id": "bass",
+      "source": "bass:pick",
+      "midi": "midi/bass.mid",
+      "fx": "bass",
+      "gainDb": -4,
+      "pan": 0,
+      "send": {
+        "reverb": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "keys",
+      "source": "keys:electric",
+      "midi": "midi/keys.mid",
+      "fx": "keys",
+      "gainDb": -9,
+      "pan": -0.12,
+      "send": {
+        "reverb": 0.18,
+        "delay": 0.05
+      }
+    },
+    {
+      "id": "pad",
+      "source": "strings:pad",
+      "midi": "midi/pad.mid",
+      "fx": "pad",
+      "gainDb": -14,
+      "pan": 0.1,
+      "send": {
+        "reverb": 0.3,
+        "delay": 0
+      }
+    }
+  ],
+  "vocal": {
+    "enabled": false,
+    "language": "zh",
+    "voice": "feiyu",
+    "style": "cute",
+    "lyrics": "lyrics/lyrics.json",
+    "melody": "midi/vocal.mid",
+    "alignment": "analysis/vocal-align.json",
+    "renders": {}
+  },
+  "mix": {
+    "preset": "citypop",
+    "reference": null,
+    "targets": {
+      "lufs": -11,
+      "truePeak": -1.0
+    }
+  },
+  "export": {
+    "daw": "generic",
+    "sampleRate": 48000,
+    "bitDepth": 24
+  },
+  "renders": {
+    "current": null,
+    "mix": null,
+    "master": null
+  },
+  "seed": 1012,
+  "createdAt": "2026-11-08T23:00:00",
+  "genrePack": {
+    "name": "纯器乐 30 秒 Demo",
+    "lufs": -11,
+    "vocal": null
+  },
+  "description": "12 小节 96 BPM 的纯器乐小样；鼓、贝斯、电钢、Pad，无人声。"
+}

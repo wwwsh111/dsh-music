@@ -1,0 +1,126 @@
+{
+  "schema": 2,
+  "id": "beat-drums-bass-keys",
+  "title": "Boom Bap Beat（鼓/贝斯/键盘）",
+  "genre": "hiphop",
+  "modifiers": [],
+  "tempo": 100,
+  "key": {
+    "tonic": "A",
+    "pc": 9,
+    "mode": "minor"
+  },
+  "meter": "4/4",
+  "sampleRate": 48000,
+  "sections": [
+    {
+      "id": "intro1",
+      "role": "intro",
+      "startBar": 1,
+      "bars": 2,
+      "energy": 0.3,
+      "chords": [
+        "Am",
+        "Am"
+      ]
+    },
+    {
+      "id": "hook1",
+      "role": "hook",
+      "startBar": 3,
+      "bars": 4,
+      "energy": 0.8,
+      "chords": [
+        "Am",
+        "F",
+        "C",
+        "G"
+      ]
+    },
+    {
+      "id": "outro1",
+      "role": "outro",
+      "startBar": 7,
+      "bars": 2,
+      "energy": 0.35,
+      "chords": [
+        "F",
+        "G"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "drums",
+      "source": "kit:boom_bap",
+      "midi": "midi/drums.mid",
+      "fx": "drum_bus",
+      "gainDb": -2,
+      "pan": 0,
+      "send": {
+        "reverb": 0.08,
+        "delay": 0
+      }
+    },
+    {
+      "id": "bass",
+      "source": "bass:sub",
+      "midi": "midi/bass.mid",
+      "fx": "bass",
+      "gainDb": -3,
+      "pan": 0,
+      "send": {
+        "reverb": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "keys",
+      "source": "keys:rhodes",
+      "midi": "midi/keys.mid",
+      "fx": "keys",
+      "gainDb": -8,
+      "pan": 0.08,
+      "send": {
+        "reverb": 0.16,
+        "delay": 0.08
+      }
+    }
+  ],
+  "vocal": {
+    "enabled": false,
+    "language": "zh",
+    "voice": "feiyu",
+    "style": "cute",
+    "lyrics": "lyrics/lyrics.json",
+    "melody": "midi/vocal.mid",
+    "alignment": "analysis/vocal-align.json",
+    "renders": {}
+  },
+  "mix": {
+    "preset": "hiphop",
+    "reference": null,
+    "targets": {
+      "lufs": -12,
+      "truePeak": -1.0
+    }
+  },
+  "export": {
+    "daw": "generic",
+    "sampleRate": 48000,
+    "bitDepth": 24
+  },
+  "renders": {
+    "current": null,
+    "mix": null,
+    "master": null
+  },
+  "seed": 1008,
+  "createdAt": "2026-11-08T23:00:00",
+  "genrePack": {
+    "name": "Boom Bap Beat（鼓/贝斯/键盘）",
+    "lufs": -12,
+    "vocal": null
+  },
+  "description": "8 小节 100 BPM 的 beat；只有鼓组、贝斯、电钢三轨，适合练编排与混音。"
+}

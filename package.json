@@ -1,0 +1,47 @@
+{
+  "name": "dsh-music",
+  "version": "1.0.2",
+  "description": "音乐模式：曲风选择、歌词、肥鱼人声、自动编曲/混音/Remix、DAW 工程导出、音效库（SoundVault 移植）。",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "cordis.patch.yml",
+    "engine",
+    "skills",
+    "scripts",
+    "tools",
+    "docs",
+    "examples",
+    "LICENSE",
+    "install.ps1",
+    "一键安装.cmd",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "music",
+    "remix",
+    "mixing",
+    "singing"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "node tools/test_code_mode.mjs && node tools/test_apply.mjs"
+  }
+}

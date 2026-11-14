@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "rock",
+  "name": "流行摇滚",
+  "aliases": [
+    "rock",
+    "pop rock",
+    "摇滚"
+  ],
+  "bpm": [
+    100,
+    140
+  ],
+  "keyFlavors": [
+    "major",
+    "minor"
+  ],
+  "progressions": [
+    [
+      "I",
+      "V",
+      "vi",
+      "IV"
+    ],
+    [
+      "i",
+      "bVII",
+      "bVI",
+      "V"
+    ],
+    [
+      "I",
+      "IV",
+      "V",
+      "vi"
+    ]
+  ],
+  "drumPatterns": [
+    "rock_kit",
+    "rock_half_time"
+  ],
+  "bassPatterns": [
+    "pick_eighth",
+    "root_drive"
+  ],
+  "compPatterns": [
+    "power_chords",
+    "clean_arpeggio"
+  ],
+  "instruments": {
+    "guitar": "guitar:dist",
+    "bass": "bass:pick",
+    "pad": "strings:pad"
+  },
+  "mixPreset": "rock",
+  "vocal": {
+    "range": [
+      "A3",
+      "E5"
+    ],
+    "style": "powerful",
+    "harmony": "3rd_above"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "solo",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -9,
+  "sampleTags": [
+    "rock",
+    "guitar",
+    "drums"
+  ],
+  "referenceHints": [
+    "双吉他叠录",
+    "副歌鼓加花",
+    "人声略靠后"
+  ],
+  "defaultKey": "E"
+}

@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "house",
+  "name": "House",
+  "aliases": [
+    "house",
+    "deep house",
+    "电子"
+  ],
+  "bpm": [
+    118,
+    128
+  ],
+  "keyFlavors": [
+    "minor7",
+    "major7"
+  ],
+  "progressions": [
+    [
+      "i7",
+      "VI",
+      "III",
+      "VII"
+    ],
+    [
+      "Imaj7",
+      "vi7",
+      "ii7",
+      "V7"
+    ],
+    [
+      "i7",
+      "iv7",
+      "VII",
+      "III"
+    ]
+  ],
+  "drumPatterns": [
+    "house_four",
+    "house_offbeat"
+  ],
+  "bassPatterns": [
+    "offbeat_pluck",
+    "root_pulse"
+  ],
+  "compPatterns": [
+    "piano_stab",
+    "pad_swell"
+  ],
+  "instruments": {
+    "keys": "piano:stab",
+    "bass": "bass:pluck",
+    "pad": "synth:pad",
+    "lead": "synth:pluck"
+  },
+  "mixPreset": "house",
+  "vocal": {
+    "range": [
+      "A3",
+      "D5"
+    ],
+    "style": "hook",
+    "harmony": "3rd_above"
+  },
+  "structure": [
+    "intro",
+    "build",
+    "drop",
+    "break",
+    "build",
+    "drop",
+    "outro"
+  ],
+  "lufs": -9,
+  "sampleTags": [
+    "house",
+    "club",
+    "four_on_floor"
+  ],
+  "referenceHints": [
+    "四踩底鼓",
+    "Offbeat 贝斯",
+    "Drop 前留 1 拍"
+  ],
+  "defaultKey": "Am"
+}

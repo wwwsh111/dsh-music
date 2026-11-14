@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "hiphop",
+  "name": "嘻哈 Boom Bap",
+  "aliases": [
+    "hiphop",
+    "hip-hop",
+    "boombap",
+    "说唱"
+  ],
+  "bpm": [
+    85,
+    95
+  ],
+  "keyFlavors": [
+    "minor",
+    "dorian"
+  ],
+  "progressions": [
+    [
+      "i7",
+      "iv7",
+      "bVII",
+      "bIII"
+    ],
+    [
+      "Imaj7",
+      "vi7",
+      "ii7",
+      "V7"
+    ],
+    [
+      "i",
+      "bVI",
+      "bIII",
+      "bVII"
+    ]
+  ],
+  "drumPatterns": [
+    "boom_bap_90",
+    "boom_bap_swing"
+  ],
+  "bassPatterns": [
+    "sub_root",
+    "root_octave_short"
+  ],
+  "compPatterns": [
+    "sample_chop",
+    "piano_loop"
+  ],
+  "instruments": {
+    "keys": "sample:vinyl",
+    "bass": "bass:sub",
+    "pad": "tape:hiss",
+    "lead": "synth:lead_short"
+  },
+  "mixPreset": "hiphop",
+  "vocal": {
+    "range": [
+      "C4",
+      "C5"
+    ],
+    "style": "rap",
+    "harmony": "none"
+  },
+  "structure": [
+    "intro",
+    "loop_a",
+    "verse",
+    "hook",
+    "verse",
+    "hook",
+    "outro"
+  ],
+  "lufs": -10,
+  "sampleTags": [
+    "boombap",
+    "vinyl",
+    "sample"
+  ],
+  "referenceHints": [
+    "摇摆 16 分",
+    "采样切片",
+    "808 不要盖过原采样"
+  ],
+  "defaultKey": "Am"
+}

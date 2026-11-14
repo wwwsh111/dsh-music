@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "cinematic",
+  "name": "管弦 / 电影感",
+  "aliases": [
+    "cinematic",
+    "orchestral",
+    "电影",
+    "管弦"
+  ],
+  "bpm": [
+    60,
+    100
+  ],
+  "keyFlavors": [
+    "minor",
+    "modal"
+  ],
+  "progressions": [
+    [
+      "i",
+      "VI",
+      "III",
+      "VII"
+    ],
+    [
+      "i",
+      "iv",
+      "VI",
+      "V"
+    ],
+    [
+      "i",
+      "bVII",
+      "bVI",
+      "V"
+    ]
+  ],
+  "drumPatterns": [
+    "orchestral_perc",
+    "timpani_build"
+  ],
+  "bassPatterns": [
+    "strings_low",
+    "root_whole"
+  ],
+  "compPatterns": [
+    "string_pad",
+    "ostinato"
+  ],
+  "instruments": {
+    "keys": "strings:section",
+    "lead": "brass:section",
+    "pad": "choir:soft",
+    "bass": "strings:low"
+  },
+  "mixPreset": "cinematic",
+  "vocal": {
+    "range": [
+      "A3",
+      "D5"
+    ],
+    "style": "choir",
+    "harmony": "octave"
+  },
+  "structure": [
+    "intro",
+    "build",
+    "climax",
+    "release",
+    "outro"
+  ],
+  "lufs": -14,
+  "sampleTags": [
+    "cinematic",
+    "strings",
+    "epic"
+  ],
+  "referenceHints": [
+    "渐进",
+    "高潮全奏",
+    "留白与呼吸"
+  ],
+  "defaultKey": "Am"
+}

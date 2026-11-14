@@ -1,0 +1,139 @@
+# dsh-music 的配置层。
+# 新行写在 insert 下面；id 必须与 index.js 的 export const name 一致（dsh-music）。
+- insert:
+    - id: dsh-music
+      name: dsh-music
+      config:
+        # 首选端口。被占用时引擎自动换空闲端口，并把实际端口写进
+        # ~/.dsh/music/engine.json；插件读该文件通信，端口冲突无需手改。
+        enginePort: 17890
+        # projectsRoot 不写时自动选：有 /sdcard 用 /sdcard/dsh/music，
+        # 否则用 ~/Music/dsh-music。可在 profile 的 cordis.patch.yml 覆盖。
+        # 下面四项是「省略参数时的默认值」：
+        # defaultGenre → music_project.genre / music_remix.targetGenre
+        # quality      → music_render.quality（draft 22.05k / standard 44.1k / high 48k）
+        # stems        → music_remix.backend（analyze 默认不跑分轨）
+        # daw          → music_export.daw
+        defaultGenre: citypop
+        quality: standard
+        stems: auto
+        daw: generic
+        voiceBaseUrl: http://127.0.0.1:9880
+        # Code Mode：一段 JS 里串多个工具，中间结果不进上下文。
+        # native = 普通工具 + music_code（默认）；compact = 只留 music_doctor
+        # + music_code，工具目录完全不占上下文；off = 关闭。
+        codeMode: native
+        # 单段程序的默认超时（毫秒），程序里可用 timeoutMs 临时放宽到 600000。
+        codeTimeoutMs: 120000
+
+    - id: preset-music
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: music
+        name: 音乐模式
+        description: 选曲风、写歌词、生成伴奏与人声，导出 DAW 工程包。
+        order: 5
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: |
+                你是 Music Studio 的制作人 Agent。用户进入音乐模式，通常是要做一首歌、
+                混一首歌或改一首歌。先用最多五个问题确认：曲风、时长结构、人声与歌词、
+                声线、交付形式；能推断的就推断，缺的项按曲风默认值补并标注。
+
+                规则：
+                1. 你听不到音频，只能读指标与波形；不要声称「听起来很好」，试听交给用户。
+                2. 先调 music_doctor 查 capabilities，再承诺人声/唱歌能力。
+                3. 歌词默认中文、一字一音；英文歌词只能念白不能唱。
+                4. 任何长任务先说明预计耗时；失败如实报告阶段，不重试三次以上。
+                5. 产物一律落到 projectsRoot，不覆盖用户原文件。
+                6. 固定三个试听点：编曲后、粗混后、母带后。
+          - id: agent-instructions
+            name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
+          - id: time-context
+            name: '@deepseek-ai/dsh-time-context'
+          - id: tool-bash
+            name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
+          - id: tool-pwsh
+            name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              # 必填。缺省会让这一行 invalid config，preset 判定为 broken，
+              # 音乐模式就会从模式选择器里整条消失（v0.3.0 的原始问题）。
+              sampleOverCapGlobResults: false
+          - id: tool-jobs
+            name: '@deepseek-ai/dsh-tool-jobs'
+          - id: tool-schedule
+            name: '@deepseek-ai/dsh-tool-schedule'
+          - id: skill-filesystem
+            name: '@deepseek-ai/dsh-skill-filesystem'
+          - id: tool-skill
+            name: '@deepseek-ai/dsh-tool-skill'
+          - id: command-goal
+            name: '@deepseek-ai/dsh-command-goal'
+          - id: tool-goal
+            name: '@deepseek-ai/dsh-tool-goal'
+          - id: compaction
+            name: cordis:group
+            group: true
+            isolate:
+              compaction: true
+              toolResultPruner: true
+            config:
+              - id: compaction-basic
+                name: '@deepseek-ai/dsh-compaction-basic'
+              - id: command-compact
+                name: '@deepseek-ai/dsh-command-compact'
+              - id: tool-result-pruner
+                name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+                config:
+                  thresholdChars: 8192
+                  headChars: 4096
+                  tailChars: 1024
+          - id: delegation
+            name: cordis:group
+            group: true
+            isolate:
+              workflowEngine: true
+            config:
+              - id: tool-subagent-control
+                name: '@deepseek-ai/dsh-tool-subagent-control'
+              - id: tool-subagent
+                name: '@deepseek-ai/dsh-tool-subagent'
+                config:
+                  provider: spawn
+                  toolName: subagent
+                  modelSelectionSettings: true
+              - id: tool-subagent-fork
+                name: '@deepseek-ai/dsh-tool-subagent'
+                config:
+                  provider: fork
+                  toolName: subagent_fork
+              - id: workflow-ptc
+                name: '@deepseek-ai/dsh-workflow-ptc'
+                config:
+                  provider: spawn
+              - id: tool-workflow
+                name: '@deepseek-ai/dsh-tool-workflow'
+          - id: tool-ask-user
+            name: '@deepseek-ai/dsh-tool-ask-user'
+          - id: tool-todo
+            name: '@deepseek-ai/dsh-tool-todo'
+            config:
+              # 必填。同 tool-fs-search，缺省同样会让 preset 变成 broken。
+              allowParallelInProgress: true
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetch: true
+              searchTimeoutMs: 60000
+          - id: present
+            name: '@deepseek-ai/dsh-tool-present'

@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "kids",
+  "name": "儿歌 / 童谣",
+  "aliases": [
+    "kids",
+    "儿歌",
+    "童谣"
+  ],
+  "bpm": [
+    90,
+    120
+  ],
+  "keyFlavors": [
+    "major"
+  ],
+  "progressions": [
+    [
+      "I",
+      "IV",
+      "V",
+      "I"
+    ],
+    [
+      "I",
+      "vi",
+      "IV",
+      "V"
+    ],
+    [
+      "I",
+      "V",
+      "I",
+      "V"
+    ]
+  ],
+  "drumPatterns": [
+    "simple_kids",
+    "clap_kids"
+  ],
+  "bassPatterns": [
+    "root_whole",
+    "root_fifth"
+  ],
+  "compPatterns": [
+    "xylophone",
+    "ukulele_strum"
+  ],
+  "instruments": {
+    "keys": "xylophone:bright",
+    "guitar": "ukulele:soft",
+    "lead": "glockenspiel:bright",
+    "bass": "bass:soft"
+  },
+  "mixPreset": "kids",
+  "vocal": {
+    "range": [
+      "C4",
+      "C5"
+    ],
+    "style": "cute",
+    "harmony": "unison"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -14,
+  "sampleTags": [
+    "kids",
+    "cute",
+    "simple"
+  ],
+  "referenceHints": [
+    "音域窄",
+    "重复句",
+    "节奏简单"
+  ],
+  "defaultKey": "C"
+}

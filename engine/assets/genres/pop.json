@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "pop",
+  "name": "华语流行",
+  "aliases": [
+    "流行",
+    "pop",
+    "华语"
+  ],
+  "bpm": [
+    92,
+    120
+  ],
+  "keyFlavors": [
+    "major",
+    "minor"
+  ],
+  "progressions": [
+    [
+      "I",
+      "V",
+      "vi",
+      "IV"
+    ],
+    [
+      "vi",
+      "IV",
+      "I",
+      "V"
+    ],
+    [
+      "I",
+      "vi",
+      "IV",
+      "V"
+    ],
+    [
+      "IV",
+      "V",
+      "iii",
+      "vi"
+    ]
+  ],
+  "drumPatterns": [
+    "pop_16",
+    "pop_half_time",
+    "pop_rock"
+  ],
+  "bassPatterns": [
+    "root_eighth",
+    "root_fifth"
+  ],
+  "compPatterns": [
+    "piano_ballad",
+    "guitar_strum"
+  ],
+  "instruments": {
+    "keys": "piano:grand",
+    "bass": "bass:round",
+    "guitar": "guitar:acoustic",
+    "pad": "strings:warm"
+  },
+  "mixPreset": "pop",
+  "vocal": {
+    "range": [
+      "A3",
+      "D5"
+    ],
+    "style": "clear",
+    "harmony": "3rd_above"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "prechorus",
+    "chorus",
+    "verse",
+    "prechorus",
+    "chorus",
+    "bridge",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -9.5,
+  "sampleTags": [
+    "pop",
+    "piano",
+    "emotional"
+  ],
+  "referenceHints": [
+    "人声靠前",
+    "副歌抬高八度叠唱",
+    "鼓组不要压过人声"
+  ],
+  "defaultKey": "C"
+}

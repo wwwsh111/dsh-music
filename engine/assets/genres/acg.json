@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "acg",
+  "name": "二次元 / J-pop",
+  "aliases": [
+    "acg",
+    "jpop",
+    "二次元",
+    "日系"
+  ],
+  "bpm": [
+    130,
+    180
+  ],
+  "keyFlavors": [
+    "major",
+    "minor"
+  ],
+  "progressions": [
+    [
+      "IV",
+      "V",
+      "iii",
+      "vi"
+    ],
+    [
+      "I",
+      "V",
+      "vi",
+      "IV"
+    ],
+    [
+      "vi",
+      "IV",
+      "V",
+      "I"
+    ]
+  ],
+  "drumPatterns": [
+    "jpop_fast",
+    "jpop_halftime"
+  ],
+  "bassPatterns": [
+    "eighth_drive",
+    "root_fifth_fast"
+  ],
+  "compPatterns": [
+    "bright_piano",
+    "guitar_8th"
+  ],
+  "instruments": {
+    "keys": "piano:bright",
+    "guitar": "guitar:dist",
+    "bass": "bass:pick",
+    "lead": "synth:lead",
+    "pad": "strings:bright"
+  },
+  "mixPreset": "acg",
+  "vocal": {
+    "range": [
+      "C4",
+      "F5"
+    ],
+    "style": "bright",
+    "harmony": "3rd_above"
+  },
+  "structure": [
+    "intro",
+    "a",
+    "b",
+    "a",
+    "b",
+    "c",
+    "b",
+    "outro"
+  ],
+  "lufs": -9,
+  "sampleTags": [
+    "acg",
+    "jpop",
+    "anime"
+  ],
+  "referenceHints": [
+    "高速鼓",
+    "副歌全编制",
+    "人声高音"
+  ],
+  "defaultKey": "C"
+}

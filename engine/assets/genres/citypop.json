@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "citypop",
+  "name": "City Pop / 都市流行",
+  "aliases": [
+    "都市流行",
+    "city pop",
+    "复古流行"
+  ],
+  "bpm": [
+    96,
+    118
+  ],
+  "keyFlavors": [
+    "maj7",
+    "minor7",
+    "secondary_dominant"
+  ],
+  "progressions": [
+    [
+      "Imaj7",
+      "vi7",
+      "ii7",
+      "V7"
+    ],
+    [
+      "IVmaj7",
+      "V7",
+      "iii7",
+      "vi7"
+    ],
+    [
+      "ii7",
+      "V7",
+      "Imaj7",
+      "vi7"
+    ],
+    [
+      "vim7",
+      "ii7",
+      "V7",
+      "Imaj7"
+    ],
+    [
+      "IVmaj7",
+      "iii7",
+      "ii7",
+      "V7"
+    ]
+  ],
+  "drumPatterns": [
+    "boom_bap_soft",
+    "city_pop_16"
+  ],
+  "bassPatterns": [
+    "finger_root_fifth",
+    "octave_drive"
+  ],
+  "compPatterns": [
+    "rhodes_syncopated",
+    "guitar_chank"
+  ],
+  "instruments": {
+    "keys": "ep:rhodes",
+    "bass": "bass:finger",
+    "guitar": "guitar:clean_chank",
+    "pad": "synth:analog_warm"
+  },
+  "mixPreset": "citypop",
+  "vocal": {
+    "range": [
+      "A3",
+      "D5"
+    ],
+    "style": "breathy",
+    "harmony": "3rd_below"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "bridge",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -10,
+  "sampleTags": [
+    "citypop",
+    "funk_guitar",
+    "rhodes"
+  ],
+  "referenceHints": [
+    "80s 日系",
+    "16 分踩镲",
+    "副歌清音吉他切分"
+  ],
+  "defaultKey": "C"
+}

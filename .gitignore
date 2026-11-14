@@ -1,0 +1,28 @@
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# Node
+node_modules/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 运行时产物（引擎生成的音频、报告、预览）
+audio/
+report/
+preview/
+renders/
+*.wav.tmp
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地配置
+.env
+*.local.json

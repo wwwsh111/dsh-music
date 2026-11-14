@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "trap",
+  "name": "Trap",
+  "aliases": [
+    "trap",
+    "808"
+  ],
+  "bpm": [
+    130,
+    160
+  ],
+  "keyFlavors": [
+    "minor",
+    "phrygian"
+  ],
+  "progressions": [
+    [
+      "i",
+      "VI",
+      "III",
+      "VII"
+    ],
+    [
+      "i",
+      "iv",
+      "VI",
+      "V"
+    ],
+    [
+      "i",
+      "bII",
+      "i",
+      "bVII"
+    ]
+  ],
+  "drumPatterns": [
+    "trap_808",
+    "trap_hats"
+  ],
+  "bassPatterns": [
+    "808_slide",
+    "808_root"
+  ],
+  "compPatterns": [
+    "dark_pluck",
+    "bell_arp"
+  ],
+  "instruments": {
+    "keys": "synth:dark",
+    "bass": "bass:808",
+    "lead": "bell:dark",
+    "pad": "synth:pad_dark"
+  },
+  "mixPreset": "trap",
+  "vocal": {
+    "range": [
+      "C4",
+      "A5"
+    ],
+    "style": "rap",
+    "harmony": "none"
+  },
+  "structure": [
+    "intro",
+    "hook",
+    "verse",
+    "hook",
+    "verse",
+    "hook",
+    "outro"
+  ],
+  "lufs": -8,
+  "sampleTags": [
+    "trap",
+    "dark",
+    "808"
+  ],
+  "referenceHints": [
+    "808 滑音",
+    "三连音踩镲",
+    "留白给说唱"
+  ],
+  "defaultKey": "Am"
+}

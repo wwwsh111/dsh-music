@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "rnb",
+  "name": "R&B / Neo-soul",
+  "aliases": [
+    "rnb",
+    "r&b",
+    "neosoul"
+  ],
+  "bpm": [
+    70,
+    100
+  ],
+  "keyFlavors": [
+    "minor7",
+    "maj7",
+    "extended"
+  ],
+  "progressions": [
+    [
+      "ii7",
+      "V7",
+      "Imaj7",
+      "vi7"
+    ],
+    [
+      "Imaj7",
+      "iii7",
+      "vi7",
+      "ii7"
+    ],
+    [
+      "iv7",
+      "bVII7",
+      "Imaj7",
+      "V7"
+    ],
+    [
+      "vim7",
+      "ii7",
+      "V7",
+      "Imaj7"
+    ]
+  ],
+  "drumPatterns": [
+    "rnb_groove",
+    "rnb_halftime"
+  ],
+  "bassPatterns": [
+    "finger_sync",
+    "root_ghost"
+  ],
+  "compPatterns": [
+    "rhodes_chords",
+    "guitar_neo_soul"
+  ],
+  "instruments": {
+    "keys": "ep:rhodes",
+    "bass": "bass:finger",
+    "guitar": "guitar:clean",
+    "pad": "strings:warm"
+  },
+  "mixPreset": "rnb",
+  "vocal": {
+    "range": [
+      "G3",
+      "E5"
+    ],
+    "style": "smooth",
+    "harmony": "3rd_below"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "bridge",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -10.5,
+  "sampleTags": [
+    "rnb",
+    "neosoul",
+    "groove"
+  ],
+  "referenceHints": [
+    "七九和弦",
+    "贝斯抢拍",
+    "人声转音和声"
+  ],
+  "defaultKey": "C"
+}

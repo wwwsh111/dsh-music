@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "lofi",
+  "name": "Lo-fi Hip-hop",
+  "aliases": [
+    "lofi",
+    "lo-fi",
+    "低保真"
+  ],
+  "bpm": [
+    70,
+    90
+  ],
+  "keyFlavors": [
+    "minor7",
+    "maj7"
+  ],
+  "progressions": [
+    [
+      "ii7",
+      "V7",
+      "Imaj7",
+      "vi7"
+    ],
+    [
+      "Imaj7",
+      "vi7",
+      "ii7",
+      "V7"
+    ],
+    [
+      "iv7",
+      "bVII",
+      "Imaj7",
+      "V7"
+    ],
+    [
+      "i7",
+      "iv7",
+      "bVII",
+      "bIII"
+    ]
+  ],
+  "drumPatterns": [
+    "boom_bap_dusty",
+    "lofi_hat"
+  ],
+  "bassPatterns": [
+    "root_whole",
+    "root_fifth_lazy"
+  ],
+  "compPatterns": [
+    "rhodes_lazy",
+    "sample_chop"
+  ],
+  "instruments": {
+    "keys": "ep:rhodes",
+    "bass": "bass:upright",
+    "guitar": "guitar:jazz_clean",
+    "pad": "tape:hiss"
+  },
+  "mixPreset": "lofi",
+  "vocal": {
+    "range": [
+      "A3",
+      "C5"
+    ],
+    "style": "soft",
+    "harmony": "none"
+  },
+  "structure": [
+    "intro",
+    "loop_a",
+    "loop_b",
+    "loop_a",
+    "loop_b",
+    "outro"
+  ],
+  "lufs": -12,
+  "sampleTags": [
+    "lofi",
+    "vinyl",
+    "dusty"
+  ],
+  "referenceHints": [
+    "黑胶底噪",
+    "鼓组轻微摇摆",
+    "人声低音量"
+  ],
+  "defaultKey": "C"
+}

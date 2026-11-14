@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "vocalrock",
+  "name": "虚拟歌手摇滚",
+  "aliases": [
+    "vocalrock",
+    "vocal rock",
+    "虚拟歌手",
+    "二次元摇滚",
+    "中文摇滚",
+    "jrock",
+    "anime rock"
+  ],
+  "description": "中文虚拟歌手（星尘/诗岸那一路）的原创摇滚：双吉他叠录、副歌和声人声、段落落差大、母带推得很满。",
+  "bpm": [
+    132,
+    168
+  ],
+  "keyFlavors": [
+    "minor",
+    "major"
+  ],
+  "progressions": [
+    [
+      "i",
+      "bVI",
+      "bIII",
+      "bVII"
+    ],
+    [
+      "i",
+      "bVII",
+      "bVI",
+      "V"
+    ],
+    [
+      "i",
+      "iv",
+      "bVII",
+      "bIII"
+    ],
+    [
+      "i",
+      "bIII",
+      "bVII",
+      "iv"
+    ]
+  ],
+  "drumPatterns": [
+    "rock_drive",
+    "rock_kit"
+  ],
+  "bassPatterns": [
+    "root_drive",
+    "pick_eighth"
+  ],
+  "compPatterns": [
+    "power_chords"
+  ],
+  "instruments": {
+    "guitar": "guitar:dist",
+    "bass": "bass:pick",
+    "keys": "keys:electric",
+    "pad": "strings:pad"
+  },
+  "mixPreset": "rock",
+  "vocal": {
+    "range": [
+      "B3",
+      "G5"
+    ],
+    "style": "powerful",
+    "harmony": "3rd_above"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "prechorus",
+    "chorus",
+    "verse",
+    "prechorus",
+    "chorus",
+    "solo",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -9.5,
+  "sampleTags": [
+    "vocaloid",
+    "jrock",
+    "guitar",
+    "drums"
+  ],
+  "referenceHints": [
+    "主歌闷音吉他、副歌开放和弦墙",
+    "副歌低三度和声人声",
+    "solo 段鼓只留半拍",
+    "母带 -9.5 LUFS 左右（-8.5 会把 crest 压到 5.6）"
+  ],
+  "defaultKey": "F#m",
+  "mix": {
+    "lufs": -9.5,
+    "truePeak": -1.0
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "folk",
+  "name": "民谣",
+  "aliases": [
+    "folk",
+    "acoustic",
+    "民谣"
+  ],
+  "bpm": [
+    70,
+    100
+  ],
+  "keyFlavors": [
+    "major"
+  ],
+  "progressions": [
+    [
+      "I",
+      "IV",
+      "vi",
+      "V"
+    ],
+    [
+      "I",
+      "V",
+      "vi",
+      "iii",
+      "IV"
+    ],
+    [
+      "I",
+      "iii",
+      "IV",
+      "V"
+    ]
+  ],
+  "drumPatterns": [
+    "soft_perc",
+    "brush_kit"
+  ],
+  "bassPatterns": [
+    "root_whole",
+    "root_fifth_slow"
+  ],
+  "compPatterns": [
+    "fingerpick",
+    "strum_soft"
+  ],
+  "instruments": {
+    "guitar": "guitar:acoustic",
+    "bass": "bass:upright",
+    "lead": "harmonica:soft"
+  },
+  "mixPreset": "folk",
+  "vocal": {
+    "range": [
+      "A3",
+      "D5"
+    ],
+    "style": "intimate",
+    "harmony": "3rd_above"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -12,
+  "sampleTags": [
+    "folk",
+    "acoustic",
+    "intimate"
+  ],
+  "referenceHints": [
+    "近讲人声",
+    "少混响",
+    "吉他指弹"
+  ],
+  "defaultKey": "C"
+}

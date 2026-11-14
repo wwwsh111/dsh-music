@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "meters": [
+    "4/4"
+  ],
+  "id": "synthwave",
+  "name": "Synthwave",
+  "aliases": [
+    "synthwave",
+    "retrowave",
+    "复古电子"
+  ],
+  "bpm": [
+    80,
+    110
+  ],
+  "keyFlavors": [
+    "minor"
+  ],
+  "progressions": [
+    [
+      "i",
+      "VI",
+      "III",
+      "VII"
+    ],
+    [
+      "i",
+      "VII",
+      "VI",
+      "VII"
+    ],
+    [
+      "i",
+      "iv",
+      "VI",
+      "V"
+    ]
+  ],
+  "drumPatterns": [
+    "gated_80s",
+    "synthwave_beat"
+  ],
+  "bassPatterns": [
+    "octave_pulse",
+    "root_eighth_dark"
+  ],
+  "compPatterns": [
+    "analog_arp",
+    "pad_wide"
+  ],
+  "instruments": {
+    "keys": "synth:analog",
+    "bass": "bass:analog",
+    "pad": "synth:pad_wide",
+    "lead": "synth:lead_80s"
+  },
+  "mixPreset": "synthwave",
+  "vocal": {
+    "range": [
+      "A3",
+      "E5"
+    ],
+    "style": "retro",
+    "harmony": "3rd_below"
+  },
+  "structure": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "solo",
+    "chorus",
+    "outro"
+  ],
+  "lufs": -9.5,
+  "sampleTags": [
+    "synthwave",
+    "retro",
+    "neon"
+  ],
+  "referenceHints": [
+    "门限鼓",
+    "宽 Pad",
+    "副歌 Lead 加倍"
+  ],
+  "defaultKey": "F#m"
+}

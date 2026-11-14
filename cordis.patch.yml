@@ -4,8 +4,8 @@
     - id: dsh-music
       name: dsh-music
       config:
-        # 首选端口。被占用时引擎自动换空闲端口，并把实际端口写进
-        # ~/.dsh/music/engine.json；插件读该文件通信，端口冲突无需手改。
+        # 引擎监听端口。被别的程序占用时启动会明确报「端口已被占用」，
+        # 改成本机空闲端口（如 17891）重连即可；插件不读 engine.json。
         enginePort: 17890
         # projectsRoot 不写时自动选：有 /sdcard 用 /sdcard/dsh/music，
         # 否则用 ~/Music/dsh-music。可在 profile 的 cordis.patch.yml 覆盖。

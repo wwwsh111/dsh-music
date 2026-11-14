@@ -394,7 +394,24 @@ def _open_hat_lift(hits, rng):
     return hits
 
 
-def section_groove(genre, role, bars, rng, energy=0.6, brief="", phrase=4, variant=None):
+def _apply_swing(hits, swing):
+    """把 8 分反拍往后挪，做出摇摆感（swing=0.17 ≈ 三连音摇摆）。
+
+    只动落在 0.5 拍位置上的音，正拍与 16 分不动；挪完再 humanize，
+    所以是「整体往后拖」而不是随机不齐。
+    """
+    if not swing:
+        return hits
+    out = []
+    for t, lane, v in hits:
+        if abs((t % 1.0) - 0.5) < 1e-6:
+            t = t + float(swing)
+        out.append((t, lane, v))
+    return out
+
+
+def section_groove(genre, role, bars, rng, energy=0.6, brief="", phrase=4, variant=None,
+                   swing=0.0):
     """生成一个段落的鼓事件（beat 相对段落起点）。
 
     variant：整首歌选定的那套鼓（pick_variant 的结果）；不传则按能量现选。
@@ -447,7 +464,7 @@ def section_groove(genre, role, bars, rng, energy=0.6, brief="", phrase=4, varia
         if bars >= 8:
             grow = 6.0 * max(0.0, (t - 4.0 * bars * 0.5) / max(1.0, 4.0 * bars * 0.5))
         out.append((t, lane, int(max(24, min(127, v + accent + grow)))))
-    return _humanize(out, rng, energy)
+    return _humanize(_apply_swing(out, swing), rng, energy)
 
 
 def kick_beats(hits):

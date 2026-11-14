@@ -6,6 +6,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import http from 'node:http'
+import net from 'node:net'
 import crypto from 'node:crypto'
 import { spawn, execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
@@ -124,6 +125,17 @@ async function pingEngine(timeoutMs = 1200) {
 
 let starting = null
 
+function portOpen(port) {
+  return new Promise((resolve) => {
+    const sock = net.connect({ host: '127.0.0.1', port })
+    const done = (v) => { try { sock.destroy() } catch {} ; resolve(v) }
+    sock.setTimeout(500)
+    sock.once('connect', () => done(true))
+    sock.once('timeout', () => done(false))
+    sock.once('error', () => done(false))
+  })
+}
+
 async function ensureEngine() {
   if (await pingEngine()) return
   if (starting) return starting
@@ -157,6 +169,11 @@ async function ensureEngine() {
     }
     let tail = ''
     try { tail = fs.readFileSync(cfg.logFile, 'utf8').slice(-1500) } catch {}
+    if (await portOpen(cfg.enginePort)) {
+      throw new Error(`音乐引擎没能启动：端口 ${cfg.enginePort} 已被别的程序占用（本机常见是另一个插件）。` +
+        `在 profile 的 dsh-music config 里把 enginePort 改成空闲端口（例如 ${cfg.enginePort + 1}），重连 DSH 即可。` +
+        `日志尾部：\n${tail}`)
+    }
     throw new Error(`音乐引擎启动失败（${cfg.python}）。日志尾部：\n${tail}`)
   })().finally(() => { starting = null })
   return starting
@@ -354,7 +371,12 @@ export function apply(ctx, rawConfig) {
       async (args) => engineCall('/v1/compose', args)),
 
     tool('music_render', '渲染：MIDI → 每轨 WAV（鼓走 FluidR3，旋律乐器走 GeneralUser，吉他再过真实箱体 IR）。',
-      { project: { type: 'string', required: true }, quality: { type: 'string' } },
+      {
+        project: { type: 'string', required: true },
+        quality: { type: 'string', description: '预留：当前渲染链固定 48 kHz / 24-bit，传了不改变输出规格' },
+        only: { type: ['string', 'array'], items: { type: 'string' },
+          description: '只重渲这几条轨（drums/bass/keys/pad/gtr_rhythm_l/gtr_rhythm_r）；改了一轨的谱面时别整首重渲' },
+      },
       async (args) => engineCall('/v1/render', args)),
 
     tool('music_analyze', '分析音频：BPM、调性、段落、响度；可选分轨（需 Demucs/MSST）。'
@@ -655,6 +677,7 @@ export function apply(ctx, rawConfig) {
         intensity: { type: 'number', description: '调教强度 0.2–1.4，默认 0.7；越大越「演」' },
         breath: { type: 'number', description: '气口比例 0–1.5，覆盖风格默认值' },
         formant: { type: 'number', description: '共振峰偏移（半音），正=更薄更亮，负=更厚' },
+        strength: { type: 'number', description: '滑音/颤音改写力度 0–1，默认 0.92；调低保留更多原唱' },
         mix: { type: 'boolean', default: true, description: 'false 只输出调教干声，不挂真实感混音链' },
         ab: { type: 'boolean', default: true, description: '生成同段落 A/B 对照（原声→调教）' },
         seed: { type: 'integer' },
@@ -729,9 +752,23 @@ export function apply(ctx, rawConfig) {
         mix: { type: 'string' },
         targetLufs: { type: 'number' },
         truePeak: { type: 'number' },
-        preset: { type: 'string' },
+        fadeOut: { type: 'number', description: '结尾淡出秒数（0 或不传＝不淡出）；上限为歌曲时长的一半' },
+        preset: { type: 'string', enum: ['streaming', 'spotify', 'youtube', 'apple', 'podcast', 'loud'],
+          description: '交付预设：streaming/spotify/youtube=-14 LUFS，apple/podcast=-16，podcast 峰值 -1.5，loud=-10；给了 targetLufs 以 targetLufs 为准' },
       },
       async (args) => engineCall('/v1/master', args)),
+
+    tool('music_denoise', '降噪（照 Audacity 的 Noise Reduction）：给一段纯噪声当画像，压掉整段音频的底噪；不给噪声就自动取最安静的部分。'
+      + '适合手机录音、房间底噪、电流声；对混响和音乐本身的人声不适用。',
+      {
+        audio: { type: 'string', required: true, description: '要去噪的音频文件（wav/mp3/m4a）' },
+        noise: { type: 'string', description: '纯噪声样本（同一环境的静音段）；不传则自动估计' },
+        noiseSeconds: { type: 'number', description: '只取噪声样本的前几秒，默认整段' },
+        output: { type: 'string', description: '输出路径；省略写到音频同目录 audio/clean/<名字>-clean.wav' },
+        reduction: { type: 'number', description: '最多压多少 dB，默认 12；越大越安静但越容易伤到气声' },
+        sensitivity: { type: 'number', description: '噪声判定灵敏度，默认 6；噪声压不干净就调大' },
+      },
+      async (args) => engineCall('/v1/denoise', args)),
 
     tool('music_remix', '自动 Remix：分离人声 → 变速/变调对齐 → 换新伴奏 → 混音 → 母带。'
       + 'mode=remix 保原唱换伴奏；cover 换声（需肥鱼 RVC）；rearrange 保留原伴奏叠新鼓/贝斯。'

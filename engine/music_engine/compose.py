@@ -50,7 +50,7 @@ def plan_arrangement(project, pack, rng, profile=None):
     key = project["key"]
     brief = " ".join(project.get("modifiers") or [])
     profile = profile or styles.make_profile(project, pack, rng)
-    drum_set = styles.drums_variant(profile, rng)
+    drum_set = styles.drums_variant(profile, rng, genre=genre)
     arr = {}
     sections = project["sections"]
     for idx, sec in enumerate(sections):
@@ -63,7 +63,7 @@ def plan_arrangement(project, pack, rng, profile=None):
                                   final_section=(idx == len(sections) - 1))
         chords = _vary_chords(chords, key, rng, role, bars, energy)
         drums = kit.section_groove(genre, role, bars, rng, energy, brief, phrase=4,
-                                   variant=drum_set)
+                                   variant=drum_set, swing=styles.swing_for(genre))
         if role == "intro" and _is_rock(genre):
             # 前奏只要镲片和最后一小节的军鼓滚奏，吉他负责主题
             drums = [(b, l, v) for b, l, v in drums

@@ -1,4 +1,4 @@
-﻿param(
+param(
   [string]$Profile = '',
   [string]$Tgz = '',
   [switch]$CheckOnly,
@@ -13,7 +13,7 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 if (-not $ProfilesRoot) { $ProfilesRoot = Join-Path $HOME '.dsh\profiles' }
 $ProfilesRoot = [System.IO.Path]::GetFullPath($ProfilesRoot)
 $PackageRoot = $PSScriptRoot
-$Version = '1.0.2'
+$Version = '1.0.3'
 try {
   $pkg = Get-Content -Raw -Encoding UTF8 (Join-Path $PackageRoot 'package.json') | ConvertFrom-Json
   if ($pkg.version) { $Version = $pkg.version }

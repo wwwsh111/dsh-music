@@ -14,6 +14,7 @@ from . import compose as compose_mod
 from . import render as render_mod
 from . import mix as mix_mod
 from . import master as master_mod
+from . import denoise as denoise_mod
 from . import export as export_mod
 from . import vocals as vocals_mod
 from . import preview as preview_mod
@@ -190,13 +191,21 @@ ROUTES = {
     "/v1/lyrics": _lyrics,
     "/v1/compose": lambda a: compose_mod.compose(_resolve_project(a.get("project")),
                                                  seed=a.get("seed"), track=a.get("track")),
-    "/v1/render": lambda a: render_mod.render(_resolve_project(a.get("project")), a.get("quality")),
+    "/v1/render": lambda a: render_mod.render(_resolve_project(a.get("project")), a.get("quality"),
+                                              only=a.get("only")),
     "/v1/mix": lambda a: mix_mod.mix(project_path=(_resolve_project(a["project"]) if a.get("project") else None),
                                      stems=a.get("stems"), preset=a.get("preset"),
                                      reference=a.get("reference"), target_lufs=a.get("targetLufs")),
     "/v1/master": lambda a: master_mod.master(project_path=(_resolve_project(a["project"]) if a.get("project") else None),
                                               mix_path=a.get("mix"), target_lufs=a.get("targetLufs"),
-                                              true_peak=a.get("truePeak", -1.0), preset=a.get("preset")),
+                                              true_peak=a.get("truePeak", -1.0), preset=a.get("preset"),
+                                              fade_out=a.get("fadeOut")),
+    "/v1/denoise": lambda a: denoise_mod.denoise(a["audio"], output=a.get("output"),
+                                                  noise=a.get("noise"),
+                                                  sr=int(a.get("sampleRate") or 48000),
+                                                  reduction_db=a.get("reduction", 12.0),
+                                                  sensitivity=a.get("sensitivity", 6.0),
+                                                  noise_seconds=a.get("noiseSeconds")),
     "/v1/export": lambda a: export_mod.export(_resolve_project(a.get("project")),
                                               a.get("daw") or "generic",
                                               a.get("sampleRate") or 48000,
@@ -312,18 +321,21 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _origin(self):
-        """只认本机界面：回环 Origin，以及不用 http 载入的桌面壳（dsh-app://app / Origin: null）。
+        """只认本机界面：回环 Origin，以及桌面壳（dsh-app://app）。
 
         桌面端（Electron）的页面是 `dsh-app://app/`，不是 http://127.0.0.1，
         所以它的 Origin 既不是回环也不是空，按老规则一律 401 —— 表现就是
-        面板永远显示「连不上音乐引擎」。这两个 Origin 只有本机桌面壳/本地文件
-        才能产生，普通网站伪造不了，放开它们不会把接口暴露给外网页面。
+        面板永远显示「连不上音乐引擎」。这个 Origin 只有本机桌面壳能产生。
+
+        Origin: null 不再放行：file:// 页面和 sandboxed iframe 都带 null，
+        而且 `_send` 会把 Origin 原样回写成 access-control-allow-origin。
+        放行 null 等于让任意网页的 iframe 读到全部工程路径和系统回环音频。
         引擎本身仍然只绑 127.0.0.1。
         """
         raw = self.headers.get("origin") or ""
         if not raw:
             return ""
-        if raw == "null" or raw.startswith("dsh-app://"):
+        if raw.startswith("dsh-app://"):
             return raw
         host = raw.split("//", 1)[-1].split("/", 1)[0]
         host = host.split(":")[0].strip("[]").lower()
@@ -334,7 +346,13 @@ class Handler(BaseHTTPRequestHandler):
         return self.path.startswith("/v1/panel/") or self.path.startswith("/v1/library/")
 
     def _panel_allowed(self):
-        """面板接口免 token：没有 Origin（curl / 同进程）放行，有 Origin 必须是回环。"""
+        """面板接口免 token：没有 Origin（curl / 同进程）放行，有 Origin 必须是回环。
+
+        浏览器请求都会带 Sec-Fetch-Site；cross-site 一律拒绝，挡住跨站 iframe
+        与表单。桌面壳/本机页面是 same-site（端口不同也算 same-site），不受影响。
+        """
+        if (self.headers.get("sec-fetch-site") or "").strip().lower() == "cross-site":
+            return False
         origin = self.headers.get("origin")
         return True if not origin else bool(self._origin())
 

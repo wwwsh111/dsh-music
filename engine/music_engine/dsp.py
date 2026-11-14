@@ -317,6 +317,38 @@ def soft_clip(x, ceiling_db=-1.0, knee_db=4.0):
     return y.astype("float32")
 
 
+def limiter(x, sr=SR, ceiling_db=-1.0, lookahead_ms=6.0, release_ms=90.0):
+    """前瞻峰值限幅器：在峰值到来之前就把增益降下来，峰值处不硬削。
+
+    跟 soft_clip 的区别：soft_clip 是「到顶了才折」，折的是波形，鼓点会变钝；
+    这里先算目标增益（ceiling/峰值），做一个向前看 lookahead_ms 的滑动最小值，
+    再按 release_ms 平滑回升，最后乘到波形上。主体电平不动，只有接近上限的
+    那几毫秒被拉低，所以同响度下动态（crest）比 soft_clip 好看。
+    """
+    x = np.asarray(x, dtype="float32")
+    if x.ndim == 1:
+        x = x[:, None]
+    n = x.shape[0]
+    if n == 0:
+        return x
+    ceil = db_to_gain(float(ceiling_db))
+    env = np.max(np.abs(x), axis=1).astype("float64")
+    env = np.maximum(env, 1e-9)
+    target = np.minimum(1.0, ceil / env)
+    try:
+        from scipy.ndimage import minimum_filter1d
+        from scipy.signal import lfilter
+        L = max(1, int(sr * float(lookahead_ms) / 1000.0))
+        look = minimum_filter1d(target, size=L, origin=-(L // 2), mode="nearest")
+        look = np.minimum(look, target)
+        a = float(np.exp(-1.0 / max(1.0, sr * float(release_ms) / 1000.0)))
+        rel = lfilter([1.0 - a], [1.0, -a], look)
+        g = np.minimum(rel, look)
+    except Exception:
+        g = target
+    return (x * g[:, None]).astype("float32")
+
+
 def parallel_compress(x, sr=SR, thr=-26.0, ratio=6.0, wet=0.35, attack=3.0, release=90.0):
     try:
         from pedalboard import Compressor, Pedalboard

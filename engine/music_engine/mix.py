@@ -355,13 +355,14 @@ def mix(project_path=None, stems=None, preset=None, reference=None, target_lufs=
     # 混音只留 -3 dBFS 余量，响度交给母带。
     # 但母带要从「混音响度」推到目标响度：如果混音太轻（比如 -17 LUFS），
     # 母带就得加 8 dB 以上，软限幅把瞬态全削平（实测 crest 从 17 掉到 5.9）。
-    # 所以混音先把整体推到「目标响度 - 5 dB」，留 5 dB 给母带做。
+    # 所以混音先把整体推到「目标响度 - 3 dB」，留 3 dB 给母带做——旧值是 -5，
+    # 母带实际要补 5 dB 以上，限幅吃掉 5–6 dB，输出响但平。
     tgt_mix = -9.0
     try:
         tgt_mix = float(((project or {}).get("mix") or {}).get("targets") or {}).get("lufs", -9.0)
     except Exception:
         pass
-    want = tgt_mix - 5.0
+    want = tgt_mix - 3.0
     try:
         cur = dsp.lufs(total, sr)
         if cur > -70 and abs(want - cur) > 0.3:

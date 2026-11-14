@@ -4,7 +4,7 @@
 
 DSH 音乐模式插件：**选曲风 → 写歌词 → 生成伴奏与人声 → 粗混 → 导出 DAW 工程包**。
 
-本仓库是 **DSH Music 1.0.2 完整版源码**，MIT 许可，免费使用与再分发。
+本仓库是 **DSH Music 1.0.3 完整版源码**，MIT 许可，免费使用与再分发。
 装在 DeepSeek Harness（DSH）里，全部计算在本机完成。
 
 - 模型做制作人（曲风、结构、歌词、参数）；本地 Python 引擎做乐手与混音师。
@@ -67,7 +67,7 @@ powershell -ExecutionPolicy Bypass -File scripts\bootstrap.ps1
 模型（TTS 7.5 GB + RVC 90 MB）可以先用本插件的下载器拉到本地：
 
 ```bash
-python scripts/download_voice_models.py --dest <你的模型目录>
+python scripts/download_voice_models.py --dest D:/feiyu/server/models
 ```
 
 > SVS（按谱唱歌）的 SoulX-Singer 权重与对齐参考不在公开模型包里，需按仓库文档单独准备；
@@ -102,7 +102,7 @@ skill 会被复制到 `~/.dsh/skills/music-production/`。
 - id: dsh-music
   name: dsh-music
   config:
-    enginePort: 17890
+    enginePort: 17890   # 被别的程序占用时改成别的空闲端口，否则引擎起不来
     projectsRoot: "D:/Music/dsh-music"
     venv: "C:/Users/you/.local/share/dsh-music/venv"
     soundfont: "C:/soundfonts/FluidR3_GM.sf2"
@@ -692,10 +692,6 @@ music_tune / music_mix / music_master / music_design
 ## 许可
 
 MIT。肥鱼声库与模型遵循其仓库条款；第三方歌曲翻唱/Remix 需自行确认授权。
-
-随仓库分发的第三方素材各自遵循其许可，署名见 [`engine/assets/ATTRIBUTION.md`](engine/assets/ATTRIBUTION.md)：
-`engine/assets/soundfonts/GeneralUser.sf2` 为 GeneralUser GS 1.471（S. Christian Collins），其许可允许随软件分发；
-`engine/assets/ir/` 下的箱体 IR 为 AK-SPKRS，CC BY 4.0。
 
 `engine/music_engine/theory.py` 的组织方式参考 [abab996/AI_MIDI](https://github.com/abab996/AI_MIDI) 的 Library
 （Apache-2.0）：先读乐理再创作、按主题分组。正文按本插件参数重写，不是原文复制；

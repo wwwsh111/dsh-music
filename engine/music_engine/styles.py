@@ -164,7 +164,7 @@ def make_profile(project, pack, rng):
             "keysDefault": "block",
             "padOpen": rng.random() < 0.6,
             "lift": rng.choice([2, 4]),
-            "swing": 0.0,
+            "swing": SWING.get(genre, 0.0),
         }
 
     # 摇滚：三种原型——不同的歌听感差异主要来自这里。
@@ -228,7 +228,28 @@ def make_profile(project, pack, rng):
     }
 
 
-def drums_variant(profile, rng):
-    """把 profile 的鼓名换成 kit 里的实际谱面对象。"""
+# 摇摆量：8 分反拍往后挪多少拍。0.17 ≈ 三连音摇摆。
+# 之前非摇滚一律写 0，lofi/hiphop 的「拖」只靠 humanize 的 ±10–30 ms jitter，
+# 听感是「不齐」而不是「摇」。
+SWING = {"lofi": 0.17, "hiphop": 0.13, "rnb": 0.11, "citypop": 0.07,
+         "folk": 0.06, "guofeng": 0.06, "trap": 0.05}
+
+
+def swing_for(genre):
+    return SWING.get(genre or "", 0.0)
+
+
+def drums_variant(profile, rng, genre=None):
+    """把 profile 的鼓名换成该曲风实际能用的谱面。
+
+    旧实现无条件返回 kit.ROCK/ROCK_ALT/ROCK_HALF，于是 trap/lofi/house/
+    citypop 全都在打摇滚鼓（trap 的 16 分 hat 与滚奏永远出不来）。现在按
+    kit.VARIANTS 的池取；池里没有这个曲风，就退回它的 family。
+    """
     from . import kit as _kit
-    return {"base": _kit.ROCK, "alt": _kit.ROCK_ALT, "half": _kit.ROCK_HALF}[profile.get("drums", "base")]
+    genre = genre or profile.get("genre") or ""
+    pool = _kit.VARIANTS.get(genre)
+    if pool:
+        idx = {"base": 0, "alt": 1, "half": 2}.get(profile.get("drums", "base"), 0)
+        return pool[min(idx, len(pool) - 1)]
+    return _kit.family_for(genre)

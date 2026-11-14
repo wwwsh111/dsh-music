@@ -2,7 +2,7 @@
 """从 hf-mirror 下载肥鱼声库（TTS / RVC），支持断点续传。
 
 用法：
-    python scripts/download_voice_models.py --dest <你的模型目录>
+    python scripts/download_voice_models.py --dest D:/feiyu/server/models
     python scripts/download_voice_models.py --list
 """
 import argparse
